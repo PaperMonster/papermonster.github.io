@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="pokemonListApp">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+     <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script src="app.js"></script>
+    <title>ShobShop Pokemon Duel</title>
+  </head>
+  <body ng-controller="PokemonListController as pokemonList">
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">ShobShop Pokemon Duel</h2>
+       <span flex></span>
+      <md-button class="md-raised" aria-label="Reset" ng-click="pokemonList.reset()">
+          Reset
+        </md-button>
+    </div>
+  </md-toolbar>
+    <md-content class="md-padding">
+    <h3>Selected {{pokemonList.countSelected()}} / {{pokemonList.pokemons.length}}</h3>
+     <div layout-gt-sm="row">
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Pokemon name</label>
+          <input ng-model="pokemonList.inputString">
+        </md-input-container>
+      </div>
+      <md-list-item ng-repeat="pokemon in pokemonList.pokemons | filter: pokemonList.inputString">
+        <p ng-style="{color: pokemon.selected ? 'red' : 'black'}">{{pokemon.number}} {{pokemon.name}}</p>
+        <md-checkbox class="md-secondary" ng-model="pokemon.selected" ng-change="pokemonList.inputString = ''"></md-checkbox>
+      </md-list-item>
+    </md-content>
+  </body>
+</html>
