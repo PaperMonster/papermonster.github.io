@@ -33,8 +33,8 @@
           <input ng-model="pokemonList.inputString">
         </md-input-container>
       </div>
-      <md-list-item ng-repeat="pokemon in pokemonList.pokemons | filter: pokemonList.inputString">
-        <p ng-style="{color: pokemon.selected ? 'red' : 'black'}">{{pokemon.number}} {{pokemon.name}}</p>
+      <md-list-item ng-repeat="pokemon in pokemonList.pokemons | filter: {name: pokemonList.inputString} ">
+        <p ng-style="{color: pokemon.selected ? 'red' : 'black', 'font-weight': pokemon.selected ? 'bold' : 'normal'}">{{pokemon.number}} {{pokemon.name}}</p>
         <md-checkbox class="md-secondary" ng-model="pokemon.selected" ng-change="pokemonList.inputString = ''"></md-checkbox>
       </md-list-item>
     </md-content>
